@@ -1,0 +1,65 @@
+﻿@model Users
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Öğrenci</title>
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css" />
+</head>
+<body>
+
+
+<div class="panel panel-info" style="margin-top: 50px; margin-left: 150px; margin-right: 150px;">
+    <div class="panel-heading">Kullanıcı</div>
+    <div class="panel-body">
+        <form asp-action="UpdateUsers" method="post">
+            <div class="form-group">
+                <label asp-for="TC">TC</label>
+                <input asp-for="TC" class="form-control" readonly />
+            </div>
+   
+            <div class="form-group">
+                <label asp-for="Name">İsim</label>
+                <input asp-for="Name" class="form-control"/>
+            </div>
+            <div class="form-group">
+                <label asp-for="Surname">Soyisim</label>
+                <input asp-for="Surname" class="form-control"/>
+            </div>
+    
+            <div class="form-group">
+                <label asp-for="Pass">Şifre</label>
+                <input asp-for="Pass" class="form-control"/>
+            </div>
+    
+            <div class="form-group">
+                <label asp-for="Age">Yaş</label>
+                <input asp-for="Age" class="form-control"/>
+            </div>
+    
+            <div class="form-group">
+                <label asp-for="Sex">Cinsiyet</label>
+                <input asp-for="Sex" class="form-control"/>
+            </div>
+    
+            <div class="form-group">
+                <label asp-for="Degree">Derece</label>
+                <input asp-for="Degree" class="form-control"/>
+            </div>
+    
+            
+            <div class="text-center">
+                <button type="submit" class="btn btn-success" style="width: 200px;">Kaydet</button>
+                <a asp-action="AdminView" class="btn btn-warning" style="width: 200px;">Listeye Geri Dön</a>
+            </div>
+        </form>
+
+          
+    </div>
+</div>
+
+
+</body>

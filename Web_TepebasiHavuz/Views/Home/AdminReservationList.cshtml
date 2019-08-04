@@ -1,0 +1,62 @@
+﻿@model IEnumerable<Reservation>
+    @{
+        Layout = "AdminLayout";
+    }
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>Rezervasyon Listesi</title>
+        <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css" />
+      
+    </head>
+    <body>
+
+        <h2>Rezervasyon Listesi</h2>
+        <div class="text-center">
+            <a asp-action="AddUser" class="btn btn-primary">Rezervasyon Ekle</a><br /><br />
+        </div>
+    
+        <table class="table table-striped">
+            <thead style="color: #fff; background-color: #343a40; border-color: #454d55">
+                <tr>
+                    <th>ID</th>
+                    <th>Kullanıcı </th>
+                    <th>Havuz Bilgisi</th>
+                    <th></th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var e in Model)
+                {
+                    <tr>
+                        <td>@e.ReservationID</td>
+                        <td>@e.User.Name</td>
+                        <td>Gün Bilgisi: <b>@e.Pool.DayInfo</b> <br/>
+                            Yaş Bilgisi <b>@e.Pool.AgeInfo</b>  <br/>
+                            Kulvar No: <b>@e.Pool.KulvarNo</b></td>
+
+                        <td>
+
+                            <form asp-action="DeleteReservation" method="post">
+
+                                <input type="hidden" name="ReservationID" value="@e.ReservationID"/>
+                                <input type="hidden" name="PoolID" value="@e.PoolID"/>
+                                <button type="submit" class="btn btn-danger">
+                                    Sil
+                                </button>
+                            </form>
+                           
+
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <a href="/Home/AdminView" class="btn btn-primary">Return to Main Menu</a>
+
+    </body>
+</html>

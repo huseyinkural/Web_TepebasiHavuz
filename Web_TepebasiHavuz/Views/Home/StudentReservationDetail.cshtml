@@ -1,0 +1,75 @@
+﻿@model PoolDB
+
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Öğrenci</title>
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css" />
+</head>
+<body>
+
+
+<h3>Rezervasyon yapacak Kişi : <b>@ViewData["UserInfo"]</b></h3>
+    
+<div class="panel panel-info" style="margin-top: 50px; margin-left: 150px; margin-right: 150px;">
+    <div class="panel-heading">Rezervasyon Yapılacak Havuz Bilgisi</div>
+    <div class="panel-body">
+        <form asp-action="StudentReservationDetail" method="post">
+    
+            <div class="form-group">
+                <label asp-for="PoolID">ID</label>
+                <input asp-for="PoolID" class="form-control" readonly/>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="PoolName">Havuz İsmi</label>
+                <input asp-for="PoolName" class="form-control" readonly/>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="KulvarNo">Kulvar Numarası</label>
+                <input asp-for="KulvarNo" class="form-control" readonly/>
+            </div>
+            <div class="form-group">
+                <label asp-for="Degree">Derece Bilgisi</label>
+                <input asp-for="Degree" class="form-control" readonly/>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="AgeInfo">Yaş Bilgisi</label>
+                <input asp-for="AgeInfo" class="form-control" readonly/>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="DayInfo">Gün Bilgisi</label>
+                <input asp-for="DayInfo" class="form-control" readonly/>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="TimePeriod">Saat Aralığı</label>
+                <input asp-for="TimePeriod" class="form-control" readonly/>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="BookingStatus">Rezervasyon Durumu</label>
+                <input asp-for="BookingStatus" class="form-control"readonly/>
+            </div>
+
+
+
+
+
+            <div class="text-center">
+                <button class="btn btn-success" type="submit" style="width: 200px">Rezervasyonu Onayla</button>
+                <a asp-action="StudentReservationList" class="btn btn-danger" style="width: 200px">Vazgeç</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+</body>

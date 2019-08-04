@@ -1,0 +1,61 @@
+﻿@model IEnumerable<PoolDB>
+
+@{
+    Layout = "AdminLayout";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>List of Events</title>
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css" />
+</head>
+<body>
+
+<h2>Havuz Listesi</h2>
+<div class="text-center">
+    <a asp-action="AddPool" class="btn btn-primary">Yeni Havuz Alanı Ekle</a><br/><br/>
+</div>
+<table class="table table-striped">
+    <thead style="color: #fff; background-color: #343a40; border-color: #454d55">
+        <tr>
+            <th>Havuz İsmi</th>
+            <th>Kulvar Numarası</th>
+            <th>Derece Bilgisi</th>
+            <th>Yaş Bilgisi</th>
+            <th>Gün Bilgisi</th>
+            <th>Saat</th>
+            <th>Rezervasyon Durumu</th>
+            <th></th>
+            
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var e in Model)
+    {
+        <tr>
+            <td>@e.PoolName</td>
+            <td>@e.KulvarNo</td>
+            <td>@e.Degree</td>
+            <td>@e.AgeInfo</td>
+            <td>@e.DayInfo</td>
+            <td>@e.TimePeriod</td>
+            <td>@e.BookingStatus</td>
+            <td>
+                <a asp-action="UpdatePool" asp-route-key="@e.PoolID"
+                   class="btn btn-danger">
+                    Edit
+                </a>
+                <input type="hidden" name="Id" value="@e.PoolID" />
+
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+<a href="/Home/AdminView" class="btn btn-primary">Return to Main Menu</a>
+
+</body>
+</html>

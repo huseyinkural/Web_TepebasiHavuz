@@ -1,0 +1,72 @@
+﻿@model PoolDB
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Havuz Alanı Oluştur</title>
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css" />
+</head>
+<body>
+
+<div class="panel panel-info" style="margin-top: 50px; margin-left: 150px; margin-right: 150px;">
+    <div class="panel-heading">Havuz Oluştur</div>
+    <div class="panel-body">
+        <form method="post" asp-controller="Home" asp-action="AddPool">
+
+    
+
+            <div class="form-group">
+                <label asp-for="PoolName">Havuz İsmi</label>
+                <input asp-for="PoolName" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label asp-for="KulvarNo">Kulvar Numarası</label>
+                <input asp-for="KulvarNo" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Degree">Derece Bilgisi</label>
+                <input asp-for="Degree" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label asp-for="AgeInfo">Yaş Bilgisi</label>
+                <input asp-for="AgeInfo" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label asp-for="DayInfo">Gün Bilgisi</label>
+                <input asp-for="DayInfo" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label asp-for="TimePeriod">Saat Aralığı</label>
+                <input asp-for="TimePeriod" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label asp-for="BookingStatus">Rezervasyon Durumu</label>
+                <input asp-for="BookingStatus" class="form-control" />
+            </div>
+
+
+            <div class="text-center">
+            <button type="submit" class="btn btn-success" style="width: 200px;">Oluştur</button>
+            <a class="btn btn-warning" href="/Home/UserList" style="width: 200px;">Listeye Geri Dön</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+
+
+</body>
+</html>
+
+

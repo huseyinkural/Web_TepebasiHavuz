@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Users>
+@{
+    Layout = "AdminLayout";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>List of Events</title>
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css" />
+</head>
+<body>
+
+<h2>Kullanıcı Listesi</h2>
+<div class="text-center">
+    <a asp-action="AddUser" class="btn btn-primary">Kullanıcı Ekle</a><br/><br/>
+</div>
+    <table class="table table-striped">
+        <thead style="color: #fff; background-color: #343a40; border-color: #454d55">
+            <tr>
+                <th>TC</th>
+                <th>İsim</th>
+                <th>Soyisim</th>
+                <th>Yaş</th>
+                <th>Derece</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var e in Model)
+            {
+                <tr>
+                    <td>@e.TC</td>
+                    <td>@e.Name</td>
+                    <td>@e.Surname</td>
+                    <td>@e.Age</td>
+                    <td>@e.Degree</td>
+                    <td>
+                        <a asp-action="UpdateUsers" asp-route-key="@e.UserID"
+                           class="btn btn-danger">
+                            Edit
+                        </a>
+                        <input type="hidden" name="Id" value="@e.UserID" />
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <a href="/Home/AdminView" class="btn btn-primary">Return to Main Menu</a>
+
+</body>
+</html>
