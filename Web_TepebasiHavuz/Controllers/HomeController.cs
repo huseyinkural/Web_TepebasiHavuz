@@ -40,8 +40,7 @@ namespace Web_TepebasiHavuz.Controllers
         [HttpPost]
         public ViewResult Login(Users user)
         {
-            if (ModelState.IsValid)
-            {
+          
                 bool isUser = repository.CheckUser(user);
                 if (isUser)
                 {
@@ -60,11 +59,11 @@ namespace Web_TepebasiHavuz.Controllers
                 {
                     return View();
                 }
-            }
+            
 
                
 
-                else return View();
+              
 
         }
 
@@ -84,8 +83,10 @@ namespace Web_TepebasiHavuz.Controllers
 
         public IActionResult StudentReservationList()
         {
+            int age = DateTime.Now.Year - activeUser.DateOfBirth.Year;
             activeUser = repository.findUser(user_TC);
-            return View(repository.PoolData.Where(p => p.AgeInfo == activeUser.Age ));
+           // return View();
+            return View(repository.PoolData.Where(p => p.AgeInfo == age && p.Degree == activeUser.Degree ));
         }
 
 
@@ -160,12 +161,12 @@ namespace Web_TepebasiHavuz.Controllers
 
         public ViewResult AdminReservationList()
         {
-            return View(repository.ReservationData);
+            return View(repository.PoolData);
         }
 
         public IActionResult StudentReservationDetail(int key)
         {
-            ViewData["UserInfo"] = activeUser.Name + " " +activeUser.Surname;
+            ViewData["UserInfo"] = activeUser.FullName;
             return View(repository.GetPool(key));
         }
 
@@ -183,19 +184,25 @@ namespace Web_TepebasiHavuz.Controllers
             return RedirectToAction(nameof(StudentReservationSuccess));
         }
 
+     
 
-        [HttpPost]
-        public IActionResult DeleteReservation(Reservation reservation)
+
+      
+        public IActionResult DeleteReservation(int key)
         {
-            PoolDB p1 = repository.GetPool(reservation.PoolID);
-            p1.BookingStatus = "";
-            repository.UpdatePool(p1);
-            repository.DeleteReservation(reservation);
+            Reservation r = repository.GetReservation(key);
+            
+            repository.DeleteReservation(r);
             //return RedirectToAction(nameof(AdminView));
             return RedirectToAction(nameof(AdminReservationList));
         }
 
-
+        public IActionResult RezervationStuList(int key)
+        {
+            var p = repository.GetPool(key);
+            ViewData["PName"] = p.PoolName + " " + p.DayInfo + " "+ p.TimePeriod + "\r\n" + "Kulvar No: "+p.KulvarNo+ " "+"Kontenjan: "+p.Limit  ;
+            return View(repository.RezData(key));
+        }
 
         public IActionResult About()
         {

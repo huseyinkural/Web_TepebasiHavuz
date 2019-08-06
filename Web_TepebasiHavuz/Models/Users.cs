@@ -8,24 +8,23 @@ namespace Web_TepebasiHavuz.Models
 {
     public class Users
     {
+        
         [Key]
         public int UserID { get; set; }
 
+        [Required(ErrorMessage = "TC boş bırakılamaz.")]
         public string TC { get; set; }
 
-        public string Name { get; set; }
-
-        public string Surname { get; set; }
-
-        public string Pass { get; set; }
-
-        public int Age { get; set; }
-
+        [Required(ErrorMessage = "İsim Soyisim")]
+        public string FullName { get; set; }
+        
         public string Sex { get; set; }
 
         public string Degree { get; set; }
 
-        public string DateOfBirth { get; set; }
+        public string User_Address { get; set; }
+
+        public DateTime DateOfBirth { get; set; }
 
         public string BloodGroup { get; set; }
 
@@ -35,6 +34,7 @@ namespace Web_TepebasiHavuz.Models
 
         public string IllnessDetail { get; set; }
 
-        public string IsTrainer { get; set; }
+
+
     }
 }

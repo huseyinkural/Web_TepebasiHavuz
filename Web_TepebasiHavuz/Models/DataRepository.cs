@@ -22,18 +22,23 @@ namespace Web_TepebasiHavuz.Models
         public IEnumerable<PoolDB> PoolData => context.PoolDB.ToArray();
         public IEnumerable<Reservation> ReservationData => context.Reservation.Include(r => r.User).Include(r=>r.Pool).ToList();
 
-
+        /*
+        public IEnumerable<Users> RezData => context.Users
+            .FromSql(
+                "select * From Users u Where u.UserID IN (Select r.UserID from Reservation r, PoolDB p Where r.PoolID = p.PoolID And p.PoolID=1)")
+            .ToList();
+*/
         public Users GetUser(int key) => context.Users.Find(key);
 
         public Users findUser(string key) => context.Users.Where(u => u.TC == key).FirstOrDefault();
 
         public PoolDB GetPool(int key) => context.PoolDB.Find(key);
-
+        public Reservation GetReservation(int key) => context.Reservation.Where(u => u.UserID == key).FirstOrDefault();
         public bool CheckUser(Users user)
         {
        
-            
-            var usr = this.context.Users.Where(u => u.TC == user.TC && u.Pass == user.Pass).FirstOrDefault();
+         
+            var usr = this.context.Users.Where(u => u.TC == user.TC).FirstOrDefault();
             if (usr != null)
             {
                 return true;
@@ -44,14 +49,18 @@ namespace Web_TepebasiHavuz.Models
         public void UpdateUser(Users user)
         {
             //Users u = GetUser(user.UserID);
+          
             Users u = this.context.Users.Where(a => a.TC == user.TC).FirstOrDefault();
-            u.Name = user.Name;
-            u.Surname = user.Surname;
-            u.Surname = user.Surname;
-            u.Pass = user.Pass;
-            u.Age = user.Age;
-            u.Sex = user.Sex;
+            u.FullName = user.FullName;
+            u.BloodGroup = user.BloodGroup;
+            u.DateOfBirth = user.DateOfBirth;
             u.Degree = user.Degree;
+            u.IllnessDetail = user.IllnessDetail;
+            u.ParentInfo = user.ParentInfo;
+            u.Sex = user.Sex;
+            u.User_Address = user.User_Address;
+            u.PillDetail = user.PillDetail;
+          
             context.SaveChanges();
         }
 
@@ -91,6 +100,18 @@ namespace Web_TepebasiHavuz.Models
         {
             this.context.Reservation.Remove(reservation);
             this.context.SaveChanges();
+        }
+
+        public IEnumerable<Users> RezData(int key)
+        {
+            string query =
+                "select * From Users u Where u.UserID IN (Select r.UserID from Reservation r, PoolDB p Where r.PoolID = p.PoolID And p.PoolID=" +
+                key.ToString() + ")";
+            IEnumerable<Users> r = this.context.Users
+                .FromSql(query)
+                .ToList();
+
+            return r;
         }
 
     }

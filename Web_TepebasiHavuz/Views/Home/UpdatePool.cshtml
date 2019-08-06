@@ -15,44 +15,79 @@
     <div class="panel-heading">Havuz Oluştur</div>
     <div class="panel-body">
         <form asp-action="UpdatePool" method="post">
-    
+
             <div class="form-group">
                 <label asp-for="PoolID">ID</label>
-                <input asp-for="PoolID" class="form-control" readonly/>
+                <input asp-for="PoolID" class="form-control" readonly />
             </div>
 
             <div class="form-group">
                 <label asp-for="PoolName">Havuz İsmi</label>
-                <input asp-for="PoolName" class="form-control"/>
+                <select class="form-control" asp-for="PoolName">
+                    <option>Oval</option>
+                    <option>Sportif</option>
+                </select>
             </div>
 
             <div class="form-group">
                 <label asp-for="KulvarNo">Kulvar Numarası</label>
-                <input asp-for="KulvarNo" class="form-control"/>
-            </div>
-            <div class="form-group">
-                <label asp-for="Degree">Derece Bilgisi</label>
-                <input asp-for="Degree" class="form-control"/>
+                <input asp-for="KulvarNo" class="form-control" />
             </div>
 
             <div class="form-group">
-                <label asp-for="AgeInfo">Yaş Bilgisi</label>
-                <input asp-for="AgeInfo" class="form-control"/>
+                <label asp-for="Limit">Kulvar Kontenjanı</label>
+                <input asp-for="Limit" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Degree">Derece</label>
+                <select class="form-control" asp-for="Degree">
+                    <option>Baslangic</option>
+                    <option>2.Teknik</option>
+                    <option>3.Teknik</option>
+                    <option>4.Teknik</option>
+                    <option>2.Seviye</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="AgeInfo">Yaş Bilgisi (Sadece tek bir yaş yazınız)</label>
+                <input asp-for="AgeInfo" class="form-control" />
             </div>
 
             <div class="form-group">
                 <label asp-for="DayInfo">Gün Bilgisi</label>
-                <input asp-for="DayInfo" class="form-control"/>
+                <select class="form-control" asp-for="DayInfo">
+                    <option>Salı/Persembe</option>
+                    <option>Çarşamba/Cuma</option>
+                    <option>Cumartesi/Pazar</option>
+
+                </select>
             </div>
 
             <div class="form-group">
                 <label asp-for="TimePeriod">Saat Aralığı</label>
-                <input asp-for="TimePeriod" class="form-control"/>
+                <select class="form-control" asp-for="TimePeriod">
+                    <option>7.00-8.00</option>
+                    <option>8.00-9.00</option>
+                    <option>9.00-10.00</option>
+                    <option>10.00-11.00</option>
+                    <option>11.00-12.00</option>
+                    <option>12.00-13.00</option>
+                    <option>13.00-14.00</option>
+                    <option>14.00-15.00</option>
+                    <option>15.00-16.00</option>
+                    <option>16.00-17.00</option>
+                    <option>17.00-18.00</option>
+                    <option>18.00-19.00</option>
+                    <option>19.30-20.30</option>
+                    <option>20.30-21.30</option>
+                </select>
             </div>
 
             <div class="form-group">
                 <label asp-for="BookingStatus">Rezervasyon Durumu</label>
-                <input asp-for="BookingStatus" class="form-control"/>
+                <input asp-for="BookingStatus" class="form-control" />
             </div>
 
 
