@@ -1,0 +1,34 @@
+﻿@model Reservation
+
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Öğrenci</title>
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css" />
+</head>
+<body>
+
+
+    <h3>Rezervasyon Detayı</h3>
+
+    <div class="panel panel-info" style="margin-top: 50px; margin-left: 150px; margin-right: 150px;">
+        <div class="panel-heading">Rezervasyon Bilgisi</div>
+        <div class="panel-body">
+            <form>
+                <div class="form-group">
+                    <label asp-for="Pool.PoolName">ID</label>
+                    <input asp-for="Pool.PoolName" class="form-control" readonly />
+                </div>
+
+
+              
+            </form>
+        </div>
+    </div>
+
+
+</body>

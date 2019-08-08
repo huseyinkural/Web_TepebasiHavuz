@@ -76,6 +76,7 @@ namespace Web_TepebasiHavuz.Models
             p.PoolName = pool.PoolName;
             p.KulvarNo = pool.KulvarNo;
             p.AgeInfo = pool.AgeInfo;
+            p.Limit = pool.Limit;
             p.BookingStatus = pool.BookingStatus;
             p.DayInfo = pool.DayInfo;
             p.Degree = pool.Degree;
@@ -98,6 +99,10 @@ namespace Web_TepebasiHavuz.Models
 
         public void DeleteReservation(Reservation reservation)
         {
+            var p = GetPool(reservation.PoolID);
+            p.BookingStatus = "";
+            UpdatePool(p);
+
             this.context.Reservation.Remove(reservation);
             this.context.SaveChanges();
         }
@@ -112,6 +117,17 @@ namespace Web_TepebasiHavuz.Models
                 .ToList();
 
             return r;
+        }
+
+        public bool haveReservation(Users user)
+        {
+            var rez = this.context.Reservation.Where(u => u.UserID == user.UserID).FirstOrDefault();
+
+            if (rez != null)
+            {
+                return true;
+            }
+            return false;
         }
 
     }

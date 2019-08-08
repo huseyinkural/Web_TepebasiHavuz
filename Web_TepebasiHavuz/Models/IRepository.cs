@@ -20,7 +20,7 @@ namespace Web_TepebasiHavuz.Models
         void AddReservation(Reservation reservation);
         Users findUser(string key);
         bool CheckUser(Users user);
-
+        bool haveReservation(Users user);
         void UpdateUser(Users user);
 
 
