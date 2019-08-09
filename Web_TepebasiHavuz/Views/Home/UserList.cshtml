@@ -7,7 +7,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>List of Events</title>
+    <title>Öğrenci Listesi</title>
     <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css" />
 </head>
 <body>
@@ -23,6 +23,8 @@
                 <th>İsim Soyisim</th>
                 <th>Doğum Tarihi</th>
                 <th>Derece</th>
+                <th></th>
+              
                
 
             </tr>
@@ -38,12 +40,23 @@
               
                 <td>
                     <a asp-action="UpdateUsers" asp-route-key="@e.UserID"
-                       class="btn btn-danger">
+                       class="btn btn-warning">
                         Edit
                     </a>
                     <input type="hidden" name="Id" value="@e.UserID" />
 
                 </td>
+                
+               
+                    <td>
+                        <a asp-action="DeleteUser" asp-route-key="@e.UserID"
+                           class="btn btn-danger">
+                            Kaydı Sil
+                        </a>
+                        <input type="hidden" name="Id" value="@e.UserID" />
+
+                    </td>
+               
             </tr>
             }
         </tbody>

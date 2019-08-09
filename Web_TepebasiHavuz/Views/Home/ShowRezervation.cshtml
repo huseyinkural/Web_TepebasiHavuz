@@ -1,34 +1,56 @@
-﻿@model Reservation
+﻿@model IEnumerable<Reservation>
 
 @{
     Layout = null;
 }
+
 <!DOCTYPE html>
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Öğrenci</title>
+    <title>Rezervasyon Bilginiz</title>
     <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css" />
 </head>
 <body>
 
+    <h2>Rezervasyon Yaptığınız Grup</h2>
 
-    <h3>Rezervasyon Detayı</h3>
+    <table class="table table-striped">
+        <thead style="color: #fff; background-color: #343a40; border-color: #454d55">
+        <tr>
+            <th>Öğrenci Bilgisi</th>
+            <th>Havuz İsmi</th>
+            <th>Kulvar Numarası</th>
+            <th>Derece Bilgisi</th>
+            <th>Yaş Bilgisi</th>
+            <th>Gün Bilgisi</th>
+            <th>Saat</th>
 
-    <div class="panel panel-info" style="margin-top: 50px; margin-left: 150px; margin-right: 150px;">
-        <div class="panel-heading">Rezervasyon Bilgisi</div>
-        <div class="panel-body">
-            <form>
-                <div class="form-group">
-                    <label asp-for="Pool.PoolName">ID</label>
-                    <input asp-for="Pool.PoolName" class="form-control" readonly />
-                </div>
 
 
-              
-            </form>
-        </div>
-    </div>
+        </tr>
+        </thead>
+        <tbody>
+            @foreach (var e in Model)
+            {
+               
+                <tr>
+                    <td>@e.User.FullName</td>
+                    <td>@e.Pool.PoolName</td>
+                    <td>@e.Pool.KulvarNo</td>
+                    <td>@e.Pool.Degree</td>
+                    <td>@e.Pool.AgeInfo</td>
+                    <td>@e.Pool.DayInfo</td>
+                    <td>@e.Pool.TimePeriod</td>
+
+                </tr>
+                
+
+            }
+        </tbody>
+    </table>
+
 
 
 </body>
+</html>

@@ -106,6 +106,17 @@ namespace Web_TepebasiHavuz.Models
             this.context.Reservation.Remove(reservation);
             this.context.SaveChanges();
         }
+        public void DeleteUser(Users u)
+        {
+            this.context.Users.Remove(u);
+            this.context.SaveChanges();
+        }
+
+        public void DeletePool(PoolDB p)
+        {
+            this.context.PoolDB.Remove(p);
+            this.context.SaveChanges();
+        }
 
         public IEnumerable<Users> RezData(int key)
         {
