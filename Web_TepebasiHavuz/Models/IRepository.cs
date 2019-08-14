@@ -22,6 +22,8 @@ namespace Web_TepebasiHavuz.Models
         bool CheckUser(Users user);
         bool haveReservation(Users user);
         void UpdateUser(Users user);
+        void DeleteUser(Users u);
+        void DeletePool(PoolDB p);
 
 
         void UpdatePool(PoolDB pool);

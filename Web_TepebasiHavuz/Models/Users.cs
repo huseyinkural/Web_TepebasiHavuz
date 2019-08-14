@@ -12,10 +12,12 @@ namespace Web_TepebasiHavuz.Models
         [Key]
         public int UserID { get; set; }
 
+        [RegularExpression(@"^[1-9]{1}[0-9]{10}$",
+            ErrorMessage = "Lütfen geçerli bir TC Kimlik Numarası girin")]
         [Required(ErrorMessage = "TC boş bırakılamaz.")]
         public string TC { get; set; }
 
-        [Required(ErrorMessage = "İsim Soyisim")]
+        //[Required]
         public string FullName { get; set; }
         
         public string Sex { get; set; }

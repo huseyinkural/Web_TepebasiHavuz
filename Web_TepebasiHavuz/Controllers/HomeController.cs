@@ -12,17 +12,12 @@ namespace Web_TepebasiHavuz.Controllers
 {
     public class HomeController : Controller
     {
-
-
         private IRepository repository;
         private static object Lock = new object();
-
 
         public HomeController(IRepository repo)
         {
             repository = repo;
-
-            
         }
         public IActionResult Index()
         {
@@ -34,11 +29,8 @@ namespace Web_TepebasiHavuz.Controllers
             return View();
         }
 
-
-
-
         [HttpPost]
-        public ViewResult Login(Users user)
+        public IActionResult Login(Users user)
         {
            
             bool isUser = repository.CheckUser(user);
@@ -50,15 +42,16 @@ namespace Web_TepebasiHavuz.Controllers
                 }
                 else
                 {
-                    
-                    
                     HttpContext.Session.SetString("UserTC", user.TC);
                     var u = repository.findUser(user.TC);
-
-                    
-                    return View("StudentRegistration", u);
-                    
-                    
+                    if (repository.haveReservation(u))
+                    {
+                        return RedirectToAction(nameof(ShowRezervation));
+                    }
+                    else
+                    {
+                        return View("StudentRegistration", u);
+                    }
                 }
             }
             else
@@ -68,8 +61,12 @@ namespace Web_TepebasiHavuz.Controllers
 
 
         }
-       
 
+        public ViewResult ShowRezervation()
+        {
+            var usr = repository.findUser(HttpContext.Session.GetString("UserTC"));
+            return View(repository.ReservationData.Where(u => u.UserID ==usr.UserID));
+        }
         public IActionResult StudentRegistration()
         {
             
@@ -203,24 +200,13 @@ namespace Web_TepebasiHavuz.Controllers
                     repository.AddReservation(r1);
                     return RedirectToAction(nameof(StudentReservationSuccess), pool);
                 }
-
                 else
                 {
                     return RedirectToAction(nameof(StudentReservationFailed));
                 }
-
             }
-
-            
-
-           
-           
         }
 
-     
-
-
-      
         public IActionResult DeleteReservation(int key)
         {
             Reservation r = repository.GetReservation(key);
@@ -230,6 +216,27 @@ namespace Web_TepebasiHavuz.Controllers
             repository.DeleteReservation(r);
             //return RedirectToAction(nameof(AdminView));
             return RedirectToAction(nameof(AdminReservationList));
+        }
+
+        public IActionResult DeleteUser(int key)
+        {
+
+            var u = repository.GetUser(key);
+           
+           
+            repository.DeleteUser(u);
+           
+            return RedirectToAction(nameof(UserList));
+        }
+        public IActionResult DeletePool(int key)
+        {
+
+            var p = repository.GetPool(key);
+
+
+            repository.DeletePool(p);
+
+            return RedirectToAction(nameof(AdminPoolList));
         }
 
         public IActionResult RezervationStuList(int key)
