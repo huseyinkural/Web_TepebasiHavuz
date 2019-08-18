@@ -21,6 +21,7 @@ namespace Web_TepebasiHavuz.Models
         public IEnumerable<Users> UserData => context.Users.ToArray();
         public IEnumerable<PoolDB> PoolData => context.PoolDB.ToArray();
         public IEnumerable<Reservation> ReservationData => context.Reservation.Include(r => r.User).Include(r=>r.Pool).ToList();
+        public IEnumerable<OnKayit> OnKayitData => context.OnKayit.ToArray();
 
         /*
         public IEnumerable<Users> RezData => context.Users
@@ -33,6 +34,9 @@ namespace Web_TepebasiHavuz.Models
         public Users findUser(string key) => context.Users.Where(u => u.TC == key).FirstOrDefault();
 
         public PoolDB GetPool(int key) => context.PoolDB.Find(key);
+
+        public OnKayit GetOnKayit(int key) => context.OnKayit.Find(key);
+
         public Reservation GetReservation(int key) => context.Reservation.Where(u => u.UserID == key).FirstOrDefault();
         public bool CheckUser(Users user)
         {
@@ -67,6 +71,12 @@ namespace Web_TepebasiHavuz.Models
         public void AddUser(Users user)
         {
             this.context.Users.Add(user);
+            this.context.SaveChanges();
+        }
+
+        public void AddOnKayit(OnKayit o)
+        {
+            this.context.OnKayit.Add(o);
             this.context.SaveChanges();
         }
 
@@ -115,6 +125,13 @@ namespace Web_TepebasiHavuz.Models
         public void DeletePool(PoolDB p)
         {
             this.context.PoolDB.Remove(p);
+            this.context.SaveChanges();
+        }
+
+
+        public void DeleteOnKayit(OnKayit o)
+        {
+            this.context.OnKayit.Remove(o);
             this.context.SaveChanges();
         }
 

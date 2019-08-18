@@ -14,5 +14,6 @@ namespace Web_TepebasiHavuz.Models
         public DbSet<Users> Users{ get; set; }
         public DbSet<PoolDB> PoolDB { get; set; }
         public DbSet<Reservation> Reservation { get; set; }
+        public DbSet<OnKayit> OnKayit { get; set; }
     }
 }

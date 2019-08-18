@@ -8,13 +8,16 @@ namespace Web_TepebasiHavuz.Models
    public interface IRepository
     {
         IEnumerable<Users> UserData { get; }
-       // IEnumerable<Users> RezData { get; }
+       
+        // IEnumerable<Users> RezData { get; }
 
         IEnumerable<Reservation> ReservationData { get; }
         IEnumerable<PoolDB> PoolData { get; }
+        IEnumerable<OnKayit> OnKayitData { get; }
         Users GetUser(int key);
         Reservation GetReservation(int key);
         PoolDB GetPool(int key);
+        OnKayit GetOnKayit(int key);
 
         void AddUser(Users user);
         void AddReservation(Reservation reservation);
@@ -24,8 +27,8 @@ namespace Web_TepebasiHavuz.Models
         void UpdateUser(Users user);
         void DeleteUser(Users u);
         void DeletePool(PoolDB p);
-
-
+        void AddOnKayit(OnKayit o);
+        void DeleteOnKayit(OnKayit o);
         void UpdatePool(PoolDB pool);
         void AddPool(PoolDB pool);
         void DeleteReservation(Reservation reservation);

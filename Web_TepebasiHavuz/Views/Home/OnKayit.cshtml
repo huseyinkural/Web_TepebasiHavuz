@@ -1,0 +1,118 @@
+﻿@model OnKayit
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Ön Kayıt</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+
+</head>
+<body>
+
+
+    <div class="panel panel-info" style="margin-top: 50px; margin-left: 150px; margin-right: 150px;">
+        <div class="panel-heading">Ön Kayıt Formu</div>
+        <div class="panel-body">
+
+
+            <form method="post" asp-controller="Home" asp-action="OnKayit">
+                <div asp-validation-summary="All"></div>
+
+                <div class="form-group">
+                    <label asp-for="TC">TC</label>
+                    <input asp-for="TC" class="form-control" />
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="FullName">İsim Soyisim</label>
+                    <input asp-for="FullName" class="form-control" />
+                </div>
+
+
+
+                <div class="form-group">
+                    <label asp-for="DateOfBirth">Yaş</label>
+                    <input class="form-control datepicker" asp-for="DateOfBirth" />
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Sex">Cinsiyet</label>
+                    <select class="form-control" asp-for="Sex">
+                        <option>Erkek</option>
+                        <option>Kadın</option>
+
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Degree">Derece</label>
+                    <select class="form-control" asp-for="Degree">
+                        <option>Baslangic</option>
+                        <option>2.Teknik</option>
+                        <option>3.Teknik</option>
+                        <option>4.Teknik</option>
+                        <option>2.Seviye</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="User_Address">Adres</label>
+                    <textarea class="form-control" rows="3" id="comment" asp-for="User_Address"></textarea>
+                </div>
+
+
+
+                <div class="form-group">
+                    <label asp-for="BloodGroup">Kan Grubu</label>
+                    <select class="form-control" asp-for="BloodGroup">
+                        <option>A rh+</option>
+                        <option>A rh-</option>
+                        <option>B rh+</option>
+                        <option>B rh-</option>
+                        <option>0 rh+</option>
+                        <option>0 rh-</option>
+                        <option>AB Rh+</option>
+                        <option>AB Rh-</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="ParentInfo">Yakın Bilgisi</label>
+                    <input asp-for="ParentInfo" class="form-control" />
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="PillDetail">Kullandığı ilaç bilgisi</label>
+                    <input asp-for="PillDetail" class="form-control" />
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="IllnessDetail">Hastalık Bilgisi</label>
+                    <input asp-for="IllnessDetail" class="form-control" />
+                </div>
+
+
+
+                <div class="text-center">
+                    <button type="submit" class="btn btn-success" style="width: 200px;">Oluştur</button>
+                </div>
+
+
+            </form>
+
+
+
+        </div>
+    </div>
+
+
+
+
+</body>
+</html>
+
+

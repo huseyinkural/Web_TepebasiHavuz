@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Mvc;
 using Web_TepebasiHavuz.Models;
 using Microsoft.AspNetCore.Http;
 
+
+
 namespace Web_TepebasiHavuz.Controllers
 {
     public class HomeController : Controller
@@ -96,6 +98,7 @@ namespace Web_TepebasiHavuz.Controllers
 
         public IActionResult StudentReservationList()
         {
+            var st = HttpContext.Session.GetString("UserTC");
 
             var u = repository.findUser(HttpContext.Session.GetString("UserTC"));
             int age = DateTime.Now.Year - u.DateOfBirth.Year;
@@ -114,6 +117,11 @@ namespace Web_TepebasiHavuz.Controllers
         {
             return View(repository.UserData);
         }
+        public ViewResult AdminOnKayit()
+        {
+            return View(repository.OnKayitData);
+        }
+
 
         public IActionResult UpdateUsers(int key)
         {
@@ -125,10 +133,28 @@ namespace Web_TepebasiHavuz.Controllers
         public IActionResult UpdateUsers(Users user)
         {
             repository.UpdateUser(user);
-            //return RedirectToAction(nameof(AdminView));
-            return View();
+            return RedirectToAction(nameof(UserList));
+          //  return View();
         }
         public ViewResult AddUser() => View();
+
+        public ViewResult OnKayit() => View();
+
+        [HttpPost]
+        public IActionResult OnKayit(OnKayit o)
+        {
+            if (ModelState.IsValid)
+            {
+                repository.AddOnKayit(o);
+                return RedirectToAction(nameof(OnKayitSuccess));
+            }
+           
+            return View(o);
+            
+           
+        }
+
+        public ViewResult OnKayitSuccess() => View();
 
         [HttpPost]
         public IActionResult AddUser(Users u)
@@ -252,6 +278,8 @@ namespace Web_TepebasiHavuz.Controllers
            
             return RedirectToAction(nameof(UserList));
         }
+
+
         public IActionResult DeletePool(int key)
         {
 
@@ -261,6 +289,38 @@ namespace Web_TepebasiHavuz.Controllers
             repository.DeletePool(p);
 
             return RedirectToAction(nameof(AdminPoolList));
+        }
+
+        public IActionResult DeleteOnKayit(int key)
+        {
+
+            var o = repository.GetOnKayit(key);
+            repository.DeleteOnKayit(o);
+
+            return RedirectToAction(nameof(AdminOnKayit));
+        }
+
+        public IActionResult AddOnKayit(int key)
+        {
+
+            var o = repository.GetOnKayit(key);
+            Users u = new Users();
+
+            u.TC = o.TC;
+            u.BloodGroup = o.BloodGroup;
+            u.DateOfBirth = o.DateOfBirth;
+            u.Degree = o.Degree;
+            u.FullName = o.FullName;
+            u.IllnessDetail = o.IllnessDetail;
+            u.ParentInfo = o.ParentInfo;
+            u.PillDetail = o.PillDetail;
+            u.Sex = o.Sex;
+            u.User_Address = o.User_Address;
+          
+            repository.AddUser(u);
+            repository.DeleteOnKayit(o);
+
+            return RedirectToAction(nameof(AdminOnKayit));
         }
 
         public IActionResult RezervationStuList(int key)
