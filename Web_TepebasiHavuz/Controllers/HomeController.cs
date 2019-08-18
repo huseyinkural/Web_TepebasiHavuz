@@ -14,17 +14,12 @@ namespace Web_TepebasiHavuz.Controllers
 {
     public class HomeController : Controller
     {
-
-
         private IRepository repository;
         private static object Lock = new object();
-
 
         public HomeController(IRepository repo)
         {
             repository = repo;
-
-            
         }
         public IActionResult Index()
         {
@@ -35,9 +30,6 @@ namespace Web_TepebasiHavuz.Controllers
         {
             return View();
         }
-
-
-
 
         [HttpPost]
         public IActionResult Login(Users user)
@@ -52,8 +44,6 @@ namespace Web_TepebasiHavuz.Controllers
                 }
                 else
                 {
-                    
-                    
                     HttpContext.Session.SetString("UserTC", user.TC);
                     var u = repository.findUser(user.TC);
                     if (repository.haveReservation(u))
@@ -64,9 +54,6 @@ namespace Web_TepebasiHavuz.Controllers
                     {
                         return View("StudentRegistration", u);
                     }
-                   
-                    
-                    
                 }
             }
             else
@@ -239,24 +226,13 @@ namespace Web_TepebasiHavuz.Controllers
                     repository.AddReservation(r1);
                     return RedirectToAction(nameof(StudentReservationSuccess), pool);
                 }
-
                 else
                 {
                     return RedirectToAction(nameof(StudentReservationFailed));
                 }
-
             }
-
-            
-
-           
-           
         }
 
-     
-
-
-      
         public IActionResult DeleteReservation(int key)
         {
             Reservation r = repository.GetReservation(key);

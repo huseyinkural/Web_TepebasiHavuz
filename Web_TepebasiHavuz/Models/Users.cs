@@ -17,7 +17,7 @@ namespace Web_TepebasiHavuz.Models
         [Required(ErrorMessage = "TC boş bırakılamaz.")]
         public string TC { get; set; }
 
-        [Required]
+        //[Required]
         public string FullName { get; set; }
         
         public string Sex { get; set; }
